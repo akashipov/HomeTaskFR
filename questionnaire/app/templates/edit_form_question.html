@@ -1,0 +1,39 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<form action="{% url 'make_edit_question' %}">
+    <input type="hidden" name="questionnaire_id" value="{{ questionnaire_id }}"/>
+    <input type="hidden" name="question_id" value="{{ id }}"/>
+    <label id="type">Type:</label>
+    <input type="number" name="type" value="{{ type }}"/>
+    <label id="text">Text:</label>
+    <input type="text" name="text" required maxlength=100 value="{{ text }}"/>
+    <block>
+        {% for answer in answers %}
+            <p><label id="answer{{ forloop.counter0 }}">Answer{{ forloop.counter0 }}:</label><input type="text" name="answer{{ forloop.counter0 }}" value="{{ answer.text }}" required maxlength=100/></p>
+        {% endfor %}
+        <button id="AddAnswer" type="button" >Add Answer</button>
+        <button id="DeleteAnswer" type="button" >Delete Answer</button>
+    </block>
+    <input type="submit" value="Make edit question" />
+</form>
+<script type="text/javascript">
+
+var count = 0;
+{% if answers %}
+    count = {{ answers|length }};
+{% endif %}
+$("button[id='AddAnswer']").click(function() {
+    var el = $('<p><label id="answer' + count + '">Answer' + count + ':</label><input type="text" name="answer' + count + '" required maxlength=100/></p>');
+    el.insertBefore($(this));
+    count += 1;
+})
+
+$("button[id='DeleteAnswer']").click(function() {
+    if (count != 0) {
+        $(this).prev().prev().remove();
+        count -= 1;
+    }
+})
+
+</script>

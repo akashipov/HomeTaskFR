@@ -1,0 +1,32 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<form action="{% url 'create_question' %}">
+    <input type="hidden" name="questionnaire_id" value="{{ questionnaire_id }}"/>
+    <label id="type">Type:</label>
+    <input type="number" name="type" required maxlength=1/>
+    <label id="text">Text:</label>
+    <input type="text" name="text" required maxlength=100/>
+    <block>
+        <button id="AddAnswer">Add Answer</button>
+        <button id="DeleteAnswer">Delete Answer</button>
+    </block>
+    <input type="submit" value="Create question" />
+</form>
+<script type="text/javascript">
+
+var count = 0;
+$("button[id='AddAnswer']").click(function() {
+    var el = $('<p><label id="answer' + count + '">Answer' + count + ':</label><input type="text" name="answer' + count + '" required maxlength=100/></p>');
+    el.insertBefore($(this));
+    count += 1;
+})
+
+$("button[id='DeleteAnswer']").click(function() {
+    if (count != 0) {
+        $(this).prev().prev().remove();
+        count -= 1;
+    }
+})
+
+</script>

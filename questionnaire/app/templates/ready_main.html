@@ -1,0 +1,7 @@
+<ol>
+    {% for item in elements %}
+        <li>
+            <a href="{% url 'start_questionnaire' item.id %}">Name: {{ item.name }}. Description: {{ item.description }}, End: {{ item.end }}</a>
+        </li>
+    {% endfor %}
+</ol>

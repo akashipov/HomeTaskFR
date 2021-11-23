@@ -1,0 +1,11 @@
+<ol>
+    {% for question in questions %}
+        <li>
+            Type: {{ question.type }}. Text: {{ question.text }}<form action="{% url 'delete_question' %}"><input type="hidden" name="id" value="{{ question.id }}" /><input type="hidden" name="questionnaire_id" value="{{ questionnaire_id }}" /><input type="submit" value="Delete" /></form><form action="{% url 'edit_question' %}"><input type="hidden" name="id" value="{{ question.id }}" /><input type="hidden" name="questionnaire_id" value="{{ questionnaire_id }}" /><input type="submit" value="Edit" /></form>
+        </li>
+    {% endfor %}
+</ol>
+<form action="{% url 'add_question' %}">
+    <input type="hidden" name="questionnaire_id" value="{{ questionnaire_id }}" />
+    <input type="submit" value="Add question" />
+</form>

@@ -1,0 +1,10 @@
+<form action="http://127.0.0.1:8000/make_edit_questionnaire">
+    <input type="hidden" name="id" value="{{ id }}"/>
+    <label id="name">Name</label>
+    <input type="text" name="name" required maxlength=10 value="{{ name }}"/>
+    <label id="description">Description:</label>
+    <input type="text" name="description" required maxlength=100 value="{{ description }}"/>
+    <label id="end">End date:</label>
+    <input type="date" name="end" required maxlength=100 value="{{ end }}"/>
+    <input type="submit" value="Create questionnaire" />
+</form>

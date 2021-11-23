@@ -1,0 +1,10 @@
+<ol>
+    {% for item in elements %}
+        <li>
+            <a href="{% url 'questions' item.id %}">Name: {{ item.name }}. Description: {{ item.description }}, End: {{ item.end }}</a><form action="{% url 'delete_questionnaire' %}"><input type="hidden" name="id" value="{{ item.id }}" /><input type="submit" value="Delete" /></form><form action="{% url 'edit_questionnaire' %}"><input type="hidden" name="id" value="{{ item.id }}" /><input type="submit" value="Edit" /></form>
+        </li>
+    {% endfor %}
+</ol>
+<form action="{% url 'add_questionnaire' %}">
+    <input type="submit" value="Add questionnaire" />
+</form>
