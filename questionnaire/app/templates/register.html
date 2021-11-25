@@ -1,0 +1,9 @@
+<form action="{% url 'make_register' %}">
+    <label for="firstname">FirstName:</label>
+    <input type="text" id="firstname" name="firstname" maxlength=20/>
+    <label for="lastname">LastName:</label>
+    <input type="text" id='lastname' name="lastname" required maxlength=20/>
+    <label for="pwd">Password:</label>
+    <input type="password" id="pwd" name="password" required/>
+    <input type="submit" value="Register" />
+</form>

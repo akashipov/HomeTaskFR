@@ -8,27 +8,38 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Questionnaires',
+            name="Questionnaires",
             fields=[
-                ('id', models.BigIntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=10)),
-                ('start', models.DateTimeField(auto_now_add=True)),
-                ('end', models.DateTimeField()),
-                ('description', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigIntegerField(primary_key=True, serialize=False),
+                ),
+                ("name", models.CharField(max_length=10)),
+                ("start", models.DateTimeField(auto_now_add=True)),
+                ("end", models.DateTimeField()),
+                ("description", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Questions',
+            name="Questions",
             fields=[
-                ('id', models.BigIntegerField(primary_key=True, serialize=False)),
-                ('type', models.IntegerField()),
-                ('text', models.CharField(max_length=100)),
-                ('Questionnaire_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.Questionnaires')),
+                (
+                    "id",
+                    models.BigIntegerField(primary_key=True, serialize=False),
+                ),
+                ("type", models.IntegerField()),
+                ("text", models.CharField(max_length=100)),
+                (
+                    "Questionnaire_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="app.Questionnaires",
+                    ),
+                ),
             ],
         ),
     ]

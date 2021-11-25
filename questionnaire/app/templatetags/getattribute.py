@@ -11,4 +11,4 @@ def getattribute(value, arg):
     return value[arg]
 
 
-register.filter('getattribute', getattribute)
+register.filter("getattribute", getattribute)

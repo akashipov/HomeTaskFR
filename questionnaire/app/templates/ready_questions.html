@@ -1,4 +1,5 @@
 {% load getattribute %}
+<form action="{% url 'save_results' %}">
 <ol>
     {% for question in questions %}
         <li>
@@ -7,7 +8,7 @@
                 {% with question_id=question.id|stringformat:"i" %}
                     {% with answers_ex="answers_"|add:question_id %}
                         {% for answer in answers|getattribute:answers_ex %}
-                            <input type={% if question.type == 2 %}"radio"{% elif question.type == 3%}"checkbox"{% endif %} id="answer{{ forloop.counter }}" name="{{ question.id }}" value="{{ answer.text }}">
+                            <input type={% if question.type == 2 %}"radio"{% elif question.type == 3%}"checkbox"{% endif %} id="answer{{ forloop.counter }}" name="{{ question.id }}" value="{{ answer.id }}">
                             <label for="answer{{ forloop.counter }}">{{ answer.text }}</label>
                         {% endfor %}
                     {% endwith %}
@@ -18,4 +19,10 @@
             {% endif %}
         </li>
     {% endfor %}
+    <li>
+        <input type="checkbox" id="anonymous" name="anonymous" value="True">
+        <label for="anonymous">Do you wanna send anonymous?</label>
+    </li>
 </ol>
+<input type="submit" value="Send answers" />
+</form>
