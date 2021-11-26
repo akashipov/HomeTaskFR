@@ -7,26 +7,60 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0004_users'),
+        ("app", "0004_users"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UsersFreeAnswers',
+            name="UsersFreeAnswers",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.CharField(max_length=40)),
-                ('answer', models.CharField(max_length=100)),
-                ('question_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.Questions')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("user", models.CharField(max_length=40)),
+                ("answer", models.CharField(max_length=100)),
+                (
+                    "question_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="app.Questions",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='UsersAnswers',
+            name="UsersAnswers",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.CharField(max_length=40)),
-                ('answer_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.Answers')),
-                ('question_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.Questions')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("user", models.CharField(max_length=40)),
+                (
+                    "answer_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="app.Answers",
+                    ),
+                ),
+                (
+                    "question_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="app.Questions",
+                    ),
+                ),
             ],
         ),
     ]

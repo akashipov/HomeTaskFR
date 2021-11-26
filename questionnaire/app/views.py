@@ -8,7 +8,6 @@ from .models import (
     UsersFreeAnswers,
 )
 from datetime import datetime
-from django.http import HttpResponse
 
 
 def questionnaires(request):
@@ -29,7 +28,7 @@ def ready_questionnaires(request):
 def start_questionnaire(request, id=None):
     context = {}
     if request.COOKIES.get("firstname") is None:
-        return HttpResponse("<h1>Need to login first!!!</h1>")
+        return render(request, "need_to_login.html", context)
     if id is None:
         return redirect("ready_questionnaires")
     questions = Questions.objects.filter(Questionnaire_id=id)
@@ -83,7 +82,7 @@ def save_results(request):
                     question_id=question, user=user, answer=answer
                 )
             user_answer.save()
-    return redirect('ready_questionnaires')
+    return redirect("ready_questionnaires")
 
 
 def make_login(request):
@@ -120,7 +119,7 @@ def make_register(request):
         password=data["password"][0],
     )
     user.save()
-    return redirect("ready_questionnaires")
+    return make_login(request)
 
 
 def edit_questionnaire(request):
